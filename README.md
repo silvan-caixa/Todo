@@ -13,4 +13,27 @@
         -Onconfiguring(DbContextOptionsBuilder options) => options.UseSqlite("DataSource=app.db;Cache=Shared")
     - Dotnet ef migrations add CreateDateBase
     - dotnet ef database update
-clear
+  # Controller
+        - Cria pasta controllers
+        - Cria  class HomeController
+        - Recebe herança :ControllerBase
+        - Decorar [ApiController]
+        - Action public string Get() => return  "Hello Word"
+        - Atributo [HttpGet]
+        - Atributo [Router("/")]
+        - Program
+            - builder.services.AddControllers()
+            - app.MapControllers()
+# Abrir e fechar conexão 
+    - using AppDbContext
+    - Usar assim:
+        - builder.Services.AddDbContext<AppDbContext>();
+    - Controller
+      - Get([FromServices] AppDbContext context)
+      - GetById
+      - Post
+      - Put
+      - Delete
+    - Trocar List por IActionResult
+        - Se null retorna NotFound()
+        - Tudo certo retorna Ok(model)
